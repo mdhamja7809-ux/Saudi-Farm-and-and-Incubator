@@ -19,24 +19,7 @@ export const Products: React.FC = () => {
       image: 'https://www.agrimart.com.bd/assets/uploads/products/2023/1697014340.jpg',
       tag: language === 'en' ? 'Most Popular' : 'সবচেয়ে জনপ্রিয়'
     },
-    {
-      id: 'chicken',
-      name: t('product.chicken.name'),
-      desc: t('product.chicken.desc'),
-      price: '35 SAR',
-      units: language === 'en' ? 'Per Piece (Approx 1kg)' : 'প্রতি পিস (প্রায় ১ কেজি)',
-      details: language === 'en' ? ['Home raised', 'Antibiotic free', 'Natural diet'] : ['বাড়িতে পালিত', 'অ্যান্টিবায়োটিক মুক্ত', 'প্রাকৃতিক খাদ্য'],
-      image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'turkey',
-      name: t('product.turkey.name'),
-      desc: t('product.turkey.desc'),
-      price: '250 SAR',
-      units: language === 'en' ? 'Starting from 5kg+' : '৫ কেজি+ থেকে শুরু',
-      details: language === 'en' ? ['Pre-ordered', 'Ready to cook', 'Premium grade'] : ['প্রি-অর্ডার', 'রান্নার জন্য প্রস্তুত', 'প্রিমিয়াম গ্রেড'],
-      image: 'https://images.unsplash.com/photo-1605335520970-13f5ecf89839?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-    }
+    
   ];
 
   return (
