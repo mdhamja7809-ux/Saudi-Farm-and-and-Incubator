@@ -1,0 +1,27 @@
+{
+  "entities": {
+    "Order": {
+      "title": "Order",
+      "description": "Customer order details",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string", "description": "Full name of the customer" },
+        "phoneNumber": { "type": "string", "description": "Phone number of the customer" },
+        "productType": { "type": "string", "enum": ["Duck", "Deshi Chicken", "Turkey"], "description": "Type of poultry ordered" },
+        "quantity": { "type": "number", "description": "Quantity ordered" },
+        "deliveryArea": { "type": "string", "description": "Selected delivery area" },
+        "deliveryDate": { "type": "string", "format": "date", "description": "Preferred delivery date" },
+        "notes": { "type": "string", "description": "Additional instructions" },
+        "totalPrice": { "type": "number", "description": "Calculated total price in SAR" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Order creation timestamp" }
+      },
+      "required": ["customerName", "phoneNumber", "productType", "quantity", "deliveryArea", "totalPrice", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of all customer orders"
+    }
+  }
+}
