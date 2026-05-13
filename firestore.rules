@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isValidOrder(data) {
+      return data.customerName is string && data.customerName.size() <= 100
+          && data.phoneNumber is string && data.phoneNumber.size() <= 20
+          && data.productType in ['Duck', 'Deshi Chicken', 'Turkey']
+          && data.quantity is number && data.quantity > 0
+          && data.deliveryArea is string
+          && data.totalPrice is number
+          && data.createdAt == request.time;
+    }
+
+    match /orders/{orderId} {
+      // Customers can create orders without being signed in (based on user request)
+      // We check the ID for safety
+      allow create: if isValidId(orderId) && isValidOrder(incoming());
+      
+      // Only admins (to be defined if needed) could read, but for now, we deny read to public
+      // If the user wants to see their order status, we might need auth later.
+    }
+  }
+}
