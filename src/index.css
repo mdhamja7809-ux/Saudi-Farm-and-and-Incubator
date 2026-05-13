@@ -1,47 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-bangla: "Hind Siliguri", sans-serif;
+  
+  --color-brand-green: #1B3022;
+  --color-brand-orange: #FF6321;
+  --color-brand-cream: #FDFCF8;
+  --color-bd-green: #006a4e;
 }
 
-:root {
-  --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-}
-
-body {
-  @apply font-sans antialiased text-white min-h-screen;
-  background: var(--bg-gradient);
-  background-attachment: fixed;
-}
-
-@layer components {
-  .glass {
-    @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+@layer base {
+  body {
+    @apply bg-brand-cream text-brand-green font-sans antialiased;
   }
   
-  .glass-dark {
-    @apply bg-black/30 backdrop-blur-xl border border-white/10 shadow-2xl;
+  .font-bn {
+    font-family: var(--font-bangla);
   }
 
-  .btn-primary {
-    @apply px-6 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg font-medium transition-all hover:scale-105 active:scale-95 shadow-lg shadow-purple-500/30;
-  }
-  
-  .btn-ghost {
-    @apply px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg transition-all;
+  .font-heading {
+    font-family: var(--font-serif);
   }
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-white/10 rounded-full hover:bg-white/20;
+.mesh-gradient {
+  background: radial-gradient(circle at 10% 10%, #1B3022 0%, transparent 40%), radial-gradient(circle at 90% 90%, #FF6321 0%, transparent 40%);
+  opacity: 0.05;
 }

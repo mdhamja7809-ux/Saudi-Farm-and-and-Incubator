@@ -1,46 +1,27 @@
 {
   "entities": {
-    "Session": {
-      "title": "Session",
-      "description": "A tutoring session log",
+    "Order": {
+      "title": "Order",
+      "description": "Customer order details",
       "type": "object",
       "properties": {
-        "taught": { "type": "boolean" },
-        "duration": { "type": "number" },
-        "notes": { "type": "string" },
-        "loggedBy": { "type": "string" },
-        "updatedAt": { "type": "number" },
-        "isExtra": { "type": "boolean" },
-        "homework": { "type": "string" },
-        "classNotes": {
-          "type": "array",
-          "items": { "type": "string" }
-        }
+        "customerName": { "type": "string", "description": "Full name of the customer" },
+        "phoneNumber": { "type": "string", "description": "Phone number of the customer" },
+        "productType": { "type": "string", "enum": ["Duck", "Deshi Chicken", "Turkey"], "description": "Type of poultry ordered" },
+        "quantity": { "type": "number", "description": "Quantity ordered" },
+        "deliveryArea": { "type": "string", "description": "Selected delivery area" },
+        "deliveryDate": { "type": "string", "format": "date", "description": "Preferred delivery date" },
+        "notes": { "type": "string", "description": "Additional instructions" },
+        "totalPrice": { "type": "number", "description": "Calculated total price in SAR" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Order creation timestamp" }
       },
-      "required": ["taught", "duration", "notes", "loggedBy", "updatedAt"]
-    },
-    "Homework": {
-      "title": "Homework",
-      "description": "A homework task with due date",
-      "type": "object",
-      "properties": {
-        "task": { "type": "string" },
-        "dueDate": { "type": "string" },
-        "submissionDate": { "type": "string" },
-        "isCompleted": { "type": "boolean" },
-        "createdAt": { "type": "number" }
-      },
-      "required": ["task", "dueDate", "isCompleted", "createdAt"]
+      "required": ["customerName", "phoneNumber", "productType", "quantity", "deliveryArea", "totalPrice", "createdAt"]
     }
   },
   "firestore": {
-    "sessions/{date}": {
-      "schema": "Session",
-      "description": "Log of sessions keyed by YYYY-MM-DD"
-    },
-    "homeworks": {
-      "schema": "Homework",
-      "description": "Collection of global homework tasks"
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of all customer orders"
     }
   }
 }
